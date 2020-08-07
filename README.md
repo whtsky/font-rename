@@ -3,5 +3,6 @@
 rename fonts & unpack ttc
 
 ```bash
-./renamer.py ~/fonts/aaa.ttc
+pipx install font-rename
+font-rename ~/fonts/aaa.ttc
 ```

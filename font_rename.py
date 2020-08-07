@@ -2,7 +2,7 @@
 import sys
 from pathlib import Path
 import cchardet as chardet
-
+import os
 from fontTools.ttLib import TTFont, TTCollection
 from fontTools.ttLib.tables._n_a_m_e import table__n_a_m_e as NameTable, NameRecord
 
@@ -63,11 +63,19 @@ def get_font_name(font: TTFont):
 
 
 def rename_font(filepath: Path):
-    font = TTFont(str(filepath.resolve()))
+    try:
+        font = TTFont(str(filepath.resolve()))
+    except:
+        print(f"Failed to parse {filepath}, ignore")
+        return
     new_path = filepath.parent / f"{get_font_name(font)}{filepath.suffix.lower()}"
     if filepath != new_path:
-        print(f"{filepath} -> {new_path}")
-        filepath.rename(new_path)
+        if new_path.exists():
+            print(f"{new_path} exist, remove: {filepath}")
+            filepath.unlink()
+        else:
+            print(f"{filepath} -> {new_path}")
+            filepath.rename(new_path)
 
 
 def unpack_ttc(filepath: Path):
@@ -87,9 +95,23 @@ def handle_file(filepath: Path):
         rename_font(filepath)
 
 
-if __name__ == "__main__":
+def handle_path(path: Path):
+    if path.stem.startswith("."):
+        return
+    if path.is_dir():
+        for f in path.iterdir():
+            handle_path(f)
+    else:
+        handle_file(path)
+
+
+def main():
     if len(sys.argv) == 1:
         print(f"Usage: {sys.argv[0]} [<files>]")
     else:
         for path in sys.argv[1:]:
-            handle_file(Path(path))
+            handle_path(Path(path))
+
+
+if __name__ == "__main__":
+    main()
