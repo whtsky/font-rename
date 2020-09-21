@@ -59,10 +59,10 @@ description = "Tools to manipulate font files"
 name = "fonttools"
 optional = false
 python-versions = ">=3.6"
-version = "4.0.2"
+version = "4.15.0"
 
 [package.extras]
-all = ["fs (>=2.2.0,<3)", "lxml (>=4.0,<5)", "zopfli (>=0.1.4)", "lz4 (>=1.7.4.2)", "matplotlib", "sympy", "brotli (>=1.0.1)", "scipy", "brotlipy (>=0.7.0)", "munkres", "unicodedata2 (>=12.0.0)", "xattr"]
+all = ["fs (>=2.2.0,<3)", "lxml (>=4.0,<5)", "zopfli (>=0.1.4)", "lz4 (>=1.7.4.2)", "matplotlib", "sympy", "brotli (>=1.0.1)", "scipy", "brotlipy (>=0.7.0)", "munkres", "unicodedata2 (>=13.0.0)", "xattr"]
 graphite = ["lz4 (>=1.7.4.2)"]
 interpolatable = ["scipy", "munkres"]
 lxml = ["lxml (>=4.0,<5)"]
@@ -70,7 +70,7 @@ plot = ["matplotlib"]
 symfont = ["sympy"]
 type1 = ["xattr"]
 ufo = ["fs (>=2.2.0,<3)"]
-unicode = ["unicodedata2 (>=12.0.0)"]
+unicode = ["unicodedata2 (>=13.0.0)"]
 woff = ["zopfli (>=0.1.4)", "brotli (>=1.0.1)", "brotlipy (>=0.7.0)"]
 
 [[package]]
@@ -82,7 +82,7 @@ python-versions = "*"
 version = "0.10.0"
 
 [metadata]
-content-hash = "b70c3e579072d36bca67a4ae17530d3d3aaba785823b897f8b37b833eb7b2740"
+content-hash = "fc0df0b3889f03e329f6f468c76121fded239dfa6dfe095fe44c4f6f764593f7"
 lock-version = "1.0"
 python-versions = "^3.7"
 
@@ -135,8 +135,8 @@ click = [
     {file = "Click-7.0.tar.gz", hash = "sha256:5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7"},
 ]
 fonttools = [
-    {file = "fonttools-4.0.2-py3-none-any.whl", hash = "sha256:c8665a202d7f5e8527c1f0b562f11994f799167af3fcaf80d52c6c0ea3c5eff0"},
-    {file = "fonttools-4.0.2.zip", hash = "sha256:bb9bf6b5b4ded33e0d9f823e5ae2e1fa643af4d614915660abe3853a9a6931cd"},
+    {file = "fonttools-4.15.0-py3-none-any.whl", hash = "sha256:458f5a76672590a39f50595382c5ab8015a992d673e4f6f9206d7121a4f7587c"},
+    {file = "fonttools-4.15.0.zip", hash = "sha256:52327fe9ad3d00814bd88d7dddc5c986cd1047c7db09afd6c828c344720acf6c"},
 ]
 toml = [
     {file = "toml-0.10.0-py2.7.egg", hash = "sha256:f1db651f9657708513243e61e6cc67d101a39bad662eaa9b5546f789338e07a3"},
