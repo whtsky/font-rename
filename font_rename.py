@@ -95,6 +95,8 @@ def handle_file(filepath: Path):
     suffix = filepath.suffix.lower()
     if suffix == ".ttc":
         unpack_ttc(filepath)
+    if suffix == ".otc":
+        unpack_ttc(filepath)
     else:
         rename_font(filepath)
 
