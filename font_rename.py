@@ -79,7 +79,11 @@ def rename_font(filepath: Path):
 
 
 def unpack_ttc(filepath: Path):
-    collection = TTCollection(str(filepath.resolve()))
+    try:
+        collection = TTCollection(str(filepath.resolve()))
+    except:
+        print(f"Failed to parse {filepath}, ignore")
+        return
     for font in collection.fonts:
         ttf_path = filepath.parent / f"{get_font_name(font)}.ttf"
         font.save(ttf_path)
