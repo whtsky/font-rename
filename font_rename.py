@@ -91,12 +91,25 @@ def unpack_ttc(filepath: Path):
     filepath.unlink()
 
 
+def unpack_otc(filepath: Path):
+    try:
+        collection = TTCollection(str(filepath.resolve()))
+    except:
+        print(f"Failed to parse {filepath}, ignore")
+        return
+    for font in collection.fonts:
+        ttf_path = filepath.parent / f"{get_font_name(font)}.otf"
+        font.save(ttf_path)
+        print(f"{filepath} -> {ttf_path}")
+    filepath.unlink()
+
+
 def handle_file(filepath: Path):
     suffix = filepath.suffix.lower()
     if suffix == ".ttc":
         unpack_ttc(filepath)
     if suffix == ".otc":
-        unpack_ttc(filepath)
+        unpack_otc(filepath)
     else:
         rename_font(filepath)
 
