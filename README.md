@@ -1,8 +1,8 @@
 # font-rename
 
-rename fonts & unpack ttc
+Renames fonts to their internal name and unpacks .ttc/.otc files.
 
 ```bash
-pipx install font-rename
-font-rename ~/fonts/aaa.ttc
+pip install font-rename
+font-rename insert/directory/file/path/here
 ```
