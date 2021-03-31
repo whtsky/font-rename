@@ -1,11 +1,18 @@
 #!/usr/bin/env python3
 import sys
+import argparse
+import atexit
 from pathlib import Path
 import cchardet as chardet
 import os
 from fontTools.ttLib import TTFont, TTCollection
 from fontTools.ttLib.tables._n_a_m_e import table__n_a_m_e as NameTable, NameRecord
 
+parser = argparse.ArgumentParser()
+
+parser.add_argument("-ru", "--remove-unparsable", dest="ru", action="store_true", help="When this option is enabled, unparsable fonts are removed instead of ignored")
+
+args, unknown = parser.parse_known_args()
 
 PREFERRED_IDS = (
     (3, 1, 0x0C04),
@@ -66,8 +73,13 @@ def rename_font(filepath: Path):
     try:
         font = TTFont(str(filepath.resolve()))
     except:
-        print(f"Failed to parse {filepath}, ignore")
-        return
+        if args.ru:
+            print(f"Failed to parse {filepath}, removing")
+            os.remove(filepath)
+            return
+        else:
+            print(f"Failed to parse {filepath}, ignore")
+            return
     new_path = filepath.parent / f"{get_font_name(font)}{filepath.suffix.lower()}"
     if filepath != new_path:
         if new_path.exists():
@@ -104,14 +116,15 @@ def unpack_otc(filepath: Path):
     filepath.unlink()
 
 
+
 def handle_file(filepath: Path):
     suffix = filepath.suffix.lower()
     if suffix == ".ttc":
-        unpack_ttc(filepath)
+       unpack_ttc(filepath)
     if suffix == ".otc":
-        unpack_otc(filepath)
+       unpack_otc(filepath)
     else:
-        rename_font(filepath)
+       rename_font(filepath)
 
 
 def handle_path(path: Path):
@@ -123,13 +136,13 @@ def handle_path(path: Path):
     else:
         handle_file(path)
 
-
 def main():
     if len(sys.argv) == 1:
         print(f"Usage: {sys.argv[0]} [<files>]")
     else:
         for path in sys.argv[1:]:
-            handle_path(Path(path))
+            if not path.startswith("-"):
+                handle_path(Path(path))
 
 
 if __name__ == "__main__":
