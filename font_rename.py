@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import sys
 import argparse
-import atexit
 from pathlib import Path
 import cchardet as chardet
 import os
