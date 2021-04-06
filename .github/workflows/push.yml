@@ -1,0 +1,20 @@
+on:
+  push:
+  pull_request:
+name: Main workflow
+jobs:
+  mypy:
+    name: mypy ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9"]
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: "x64"
+      - uses: snok/install-poetry@v1.1.1
+      - run: poetry install
+      - run: poetry run mypy font_rename.py
