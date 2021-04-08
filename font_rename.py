@@ -9,7 +9,7 @@ from fontTools.ttLib.tables._n_a_m_e import table__n_a_m_e as NameTable, NameRec
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("-ru", "--remove-unparsable", dest="ru", action="store_true", help="When this option is enabled, unparsable fonts are removed instead of ignored")
+parser.add_argument("-ru", "--remove-unparsable", dest="remove_unparsable", action="store_true", help="When this option is enabled, unparsable fonts are removed instead of ignored")
 
 args, unknown = parser.parse_known_args()
 
@@ -72,7 +72,7 @@ def rename_font(filepath: Path):
     try:
         font = TTFont(str(filepath.resolve()))
     except:
-        if args.ru:
+        if args.remove_unparsable:
             print(f"Failed to parse {filepath}, removing")
             os.remove(filepath)
             return
