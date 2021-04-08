@@ -7,11 +7,6 @@ import os
 from fontTools.ttLib import TTFont, TTCollection
 from fontTools.ttLib.tables._n_a_m_e import table__n_a_m_e as NameTable, NameRecord
 
-parser = argparse.ArgumentParser()
-
-parser.add_argument("-ru", "--remove-unparsable", dest="remove_unparsable", action="store_true", help="When this option is enabled, unparsable fonts are removed instead of ignored")
-
-args, unknown = parser.parse_known_args()
 
 PREFERRED_IDS = (
     (3, 1, 0x0C04),
@@ -136,6 +131,10 @@ def handle_path(path: Path):
         handle_file(path)
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-ru", "--remove-unparsable", dest="remove_unparsable", action="store_true", help="When this option is enabled, unparsable fonts are removed instead of ignored")
+    args, unknown = parser.parse_known_args()
+    
     if len(sys.argv) == 1:
         print(f"Usage: {sys.argv[0]} [<files>]")
     else:
