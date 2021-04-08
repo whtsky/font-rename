@@ -74,7 +74,7 @@ def rename_font(filepath: Path):
     except:
         if args.remove_unparsable:
             print(f"Failed to parse {filepath}, removing")
-            os.remove(filepath)
+            filepath.unlink()
             return
         else:
             print(f"Failed to parse {filepath}, ignore")
