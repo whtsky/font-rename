@@ -114,11 +114,11 @@ def unpack_otc(filepath: Path):
 def handle_file(filepath: Path):
     suffix = filepath.suffix.lower()
     if suffix == ".ttc":
-       unpack_ttc(filepath)
+        unpack_ttc(filepath)
     if suffix == ".otc":
-       unpack_otc(filepath)
+        unpack_otc(filepath)
     else:
-       rename_font(filepath)
+        rename_font(filepath)
 
 
 def handle_path(path: Path):
