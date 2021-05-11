@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import sys
 import argparse
 from pathlib import Path
 import cchardet as chardet
@@ -11,7 +10,9 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("-ru", "--remove-unparsable", dest="remove_unparsable", action="store_true", help="When this option is enabled, unparsable fonts are removed instead of ignored")
 
-args, unknown = parser.parse_known_args()
+parser.add_argument("files", nargs="+")
+
+args, unknown = parser.parse_known_intermixed_args()
 
 PREFERRED_IDS = (
     (3, 1, 0x0C04),
@@ -135,13 +136,10 @@ def handle_path(path: Path):
     else:
         handle_file(path)
 
+
 def main():
-    if len(sys.argv) == 1:
-        print(f"Usage: {sys.argv[0]} [<files>]")
-    else:
-        for path in sys.argv[1:]:
-            if not path.startswith("-"):
-                handle_path(Path(path))
+    for path in args.files:
+        handle_path(Path(path))
 
 
 if __name__ == "__main__":
