@@ -9,7 +9,7 @@ repository = "https://github.com/whtsky/font-rename/"
 [tool.poetry.dependencies]
 python = "^3.7"
 fonttools = "^4.16.0"
-cchardet = "^2.1.6"
+cchardet = "^2.1.7"
 
 [tool.poetry.dev-dependencies]
 black = "^19.3b0"
