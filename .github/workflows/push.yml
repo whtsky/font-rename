@@ -3,6 +3,20 @@ on:
   pull_request:
 name: Main workflow
 jobs:
+  twine_check:
+    name: Twine Checkout
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+          architecture: "x64"
+      - uses: snok/install-poetry@v1.1.4
+      - run: poetry install
+      - run: poetry build
+      - run: poetry run twine check dist/*
+
   mypy:
     name: mypy ${{ matrix.python-version }}
     runs-on: ubuntu-latest
