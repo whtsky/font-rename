@@ -1,18 +1,13 @@
 #!/usr/bin/env python3
 import argparse
 from pathlib import Path
+from typing import List
+
 import cchardet as chardet
-import os
-from fontTools.ttLib import TTFont, TTCollection
-from fontTools.ttLib.tables._n_a_m_e import table__n_a_m_e as NameTable, NameRecord
-
-parser = argparse.ArgumentParser()
-
-parser.add_argument("-ru", "--remove-unparsable", dest="remove_unparsable", action="store_true", help="When this option is enabled, unparsable fonts are removed instead of ignored")
-
-parser.add_argument("files", nargs="+")
-
-args, unknown = parser.parse_known_intermixed_args()
+from fontTools.ttLib import TTCollection
+from fontTools.ttLib import TTFont
+from fontTools.ttLib.tables._n_a_m_e import NameRecord
+from fontTools.ttLib.tables._n_a_m_e import table__n_a_m_e as NameTable
 
 PREFERRED_IDS = (
     (3, 1, 0x0C04),
@@ -38,7 +33,7 @@ PREFERRED_NAME_IDS = (
 )
 
 
-def decode_name(name: NameRecord):
+def decode_name(name: NameRecord) -> str:
     try:
         return name.toUnicode().strip()
     except:
@@ -47,7 +42,7 @@ def decode_name(name: NameRecord):
         return raw.decode(guess["encoding"]).strip()
 
 
-def get_current_family_name(table: NameTable):
+def get_current_family_name(table: NameTable) -> str:
     for plat_id, enc_id, lang_id in PREFERRED_IDS:
         for name_id in PREFERRED_NAME_IDS:
             family_name_rec = table.getName(
@@ -56,7 +51,7 @@ def get_current_family_name(table: NameTable):
             if family_name_rec:
                 return decode_name(family_name_rec)
     for name_id in PREFERRED_NAME_IDS:
-        results = []
+        results: List[str] = []
         for name_record in table.names:
             if name_record.nameID == name_id:
                 results.append(decode_name(name_record))
@@ -69,11 +64,11 @@ def get_font_name(font: TTFont):
     return get_current_family_name(font["name"])
 
 
-def rename_font(filepath: Path):
+def rename_font(filepath: Path, remove_unparsable: bool) -> None:
     try:
         font = TTFont(str(filepath.resolve()))
     except:
-        if args.remove_unparsable:
+        if remove_unparsable:
             print(f"Failed to parse {filepath}, removing")
             filepath.unlink()
             return
@@ -90,7 +85,7 @@ def rename_font(filepath: Path):
             filepath.rename(new_path)
 
 
-def unpack_ttc(filepath: Path):
+def unpack_ttc(filepath: Path) -> None:
     try:
         collection = TTCollection(str(filepath.resolve()))
     except:
@@ -103,7 +98,7 @@ def unpack_ttc(filepath: Path):
     filepath.unlink()
 
 
-def unpack_otc(filepath: Path):
+def unpack_otc(filepath: Path) -> None:
     try:
         collection = TTCollection(str(filepath.resolve()))
     except:
@@ -116,30 +111,43 @@ def unpack_otc(filepath: Path):
     filepath.unlink()
 
 
-
-def handle_file(filepath: Path):
+def handle_file(filepath: Path, remove_unparsable: bool) -> None:
     suffix = filepath.suffix.lower()
     if suffix == ".ttc":
         unpack_ttc(filepath)
-    if suffix == ".otc":
+    elif suffix == ".otc":
         unpack_otc(filepath)
     else:
-        rename_font(filepath)
+        rename_font(filepath, remove_unparsable=remove_unparsable)
 
 
-def handle_path(path: Path):
+def handle_path(path: Path, remove_unparsable: bool) -> None:
     if path.stem.startswith("."):
         return
     if path.is_dir():
         for f in path.iterdir():
-            handle_path(f)
+            handle_path(f, remove_unparsable=remove_unparsable)
     else:
-        handle_file(path)
+        handle_file(path, remove_unparsable=remove_unparsable)
 
 
-def main():
+def main() -> None:
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "-ru",
+        "--remove-unparsable",
+        dest="remove_unparsable",
+        action="store_true",
+        help="Remove unparsable fonts instead of ignore",
+    )
+
+    parser.add_argument("files", nargs="+")
+
+    args = parser.parse_args()
+
     for path in args.files:
-        handle_path(Path(path))
+        handle_path(Path(path), remove_unparsable=args.remove_unparsable)
 
 
 if __name__ == "__main__":
