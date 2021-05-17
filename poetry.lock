@@ -125,7 +125,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "fonttools"
-version = "4.22.1"
+version = "4.23.1"
 description = "Tools to manipulate font files"
 category = "main"
 optional = false
@@ -580,8 +580,8 @@ docutils = [
     {file = "docutils-0.17.1.tar.gz", hash = "sha256:686577d2e4c32380bb50cbb22f575ed742d58168cee37e99117a854bcd88f125"},
 ]
 fonttools = [
-    {file = "fonttools-4.22.1-py3-none-any.whl", hash = "sha256:cd9bb655261d85ff530eced8b1bc128d6f132415aad24ba03bc8e673235428e4"},
-    {file = "fonttools-4.22.1.zip", hash = "sha256:fea6bb9d1d23a94d5e8fa6238214538a89d4333e340025a95a16b77ddb191e6f"},
+    {file = "fonttools-4.23.1-py3-none-any.whl", hash = "sha256:393223ffbd3cefdddeb38a68d9ff008295fa47403d9e0611187430ef27a9ea7e"},
+    {file = "fonttools-4.23.1.zip", hash = "sha256:cc10e3d129aab606d2a85ea7e6b74baa91ecdd4f315cd4f2c39481beeb9040c3"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
