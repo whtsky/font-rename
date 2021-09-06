@@ -256,7 +256,7 @@ testing = ["nose", "coverage"]
 
 [[package]]
 name = "platformdirs"
-version = "2.2.0"
+version = "2.3.0"
 description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 category = "dev"
 optional = false
@@ -436,15 +436,7 @@ python-versions = "*"
 
 [[package]]
 name = "typing-extensions"
-version = "3.7.4.3"
-description = "Backported and Experimental Type Hints for Python 3.5+"
-category = "dev"
-optional = false
-python-versions = "*"
-
-[[package]]
-name = "typing-extensions"
-version = "3.10.0.1"
+version = "3.10.0.2"
 description = "Backported and Experimental Type Hints for Python 3.5+"
 category = "dev"
 optional = false
@@ -675,8 +667,8 @@ pkginfo = [
     {file = "pkginfo-1.7.1.tar.gz", hash = "sha256:e7432f81d08adec7297633191bbf0bd47faf13cd8724c3a13250e51d542635bd"},
 ]
 platformdirs = [
-    {file = "platformdirs-2.2.0-py3-none-any.whl", hash = "sha256:4666d822218db6a262bdfdc9c39d21f23b4cfdb08af331a81e92751daf6c866c"},
-    {file = "platformdirs-2.2.0.tar.gz", hash = "sha256:632daad3ab546bd8e6af0537d09805cec458dce201bccfe23012df73332e181e"},
+    {file = "platformdirs-2.3.0-py3-none-any.whl", hash = "sha256:8003ac87717ae2c7ee1ea5a84a1a61e87f3fbd16eb5aadba194ea30a9019f648"},
+    {file = "platformdirs-2.3.0.tar.gz", hash = "sha256:15b056538719b1c94bdaccb29e5f81879c7f7f0f4a153f46086d155dffcd4f0f"},
 ]
 pycparser = [
     {file = "pycparser-2.20-py2.py3-none-any.whl", hash = "sha256:7582ad22678f0fcd81102833f60ef8d0e57288b6b5fb00323d101be910e35705"},
@@ -806,12 +798,9 @@ typed-ast = [
     {file = "typed_ast-1.4.3.tar.gz", hash = "sha256:fb1bbeac803adea29cedd70781399c99138358c26d05fcbd23c13016b7f5ec65"},
 ]
 typing-extensions = [
-    {file = "typing_extensions-3.7.4.3-py2-none-any.whl", hash = "sha256:dafc7639cde7f1b6e1acc0f457842a83e722ccca8eef5270af2d74792619a89f"},
-    {file = "typing_extensions-3.7.4.3-py3-none-any.whl", hash = "sha256:7cb407020f00f7bfc3cb3e7881628838e69d8f3fcab2f64742a5e76b2f841918"},
-    {file = "typing_extensions-3.7.4.3.tar.gz", hash = "sha256:99d4073b617d30288f569d3f13d2bd7548c3a7e4c8de87db09a9d29bb3a4a60c"},
-    {file = "typing_extensions-3.10.0.1-py2-none-any.whl", hash = "sha256:8bbffbd37fbeb9747a0241fdfde5ae99d4531ad1d1a41ccaea62100e15a5814c"},
-    {file = "typing_extensions-3.10.0.1-py3-none-any.whl", hash = "sha256:045dd532231acfa03628df5e0c66dba64e2cc8fc8b844538d4ad6d5dd6cb82dc"},
-    {file = "typing_extensions-3.10.0.1.tar.gz", hash = "sha256:83af6730a045fda60f46510f7f1f094776d90321caa4d97d20ef38871bef4bd3"},
+    {file = "typing_extensions-3.10.0.2-py2-none-any.whl", hash = "sha256:d8226d10bc02a29bcc81df19a26e56a9647f8b0a6d4a83924139f4a8b01f17b7"},
+    {file = "typing_extensions-3.10.0.2-py3-none-any.whl", hash = "sha256:f1d25edafde516b146ecd0613dabcc61409817af4766fbbcfb8d1ad4ec441a34"},
+    {file = "typing_extensions-3.10.0.2.tar.gz", hash = "sha256:49f75d16ff11f1cd258e1b988ccff82a3ca5570217d7ad8c5f48205dd99a677e"},
 ]
 urllib3 = [
     {file = "urllib3-1.26.6-py2.py3-none-any.whl", hash = "sha256:39fb8672126159acb139a7718dd10806104dec1e2f0f6c88aab05d17df10c8d4"},
