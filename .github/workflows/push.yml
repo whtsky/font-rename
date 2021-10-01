@@ -12,7 +12,7 @@ jobs:
         with:
           python-version: "3.x"
           architecture: "x64"
-      - uses: snok/install-poetry@v1.2.0
+      - uses: snok/install-poetry@v1.2.1
       - run: poetry install
       - run: poetry build
       - run: poetry run twine check dist/*
@@ -29,6 +29,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           architecture: "x64"
-      - uses: snok/install-poetry@v1.2.0
+      - uses: snok/install-poetry@v1.2.1
       - run: poetry install
       - run: poetry run mypy font_rename.py
