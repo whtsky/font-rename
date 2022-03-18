@@ -9,7 +9,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-fonttools = "^4.16.0"
+fonttools = "^4.31.1"
 cchardet = "^2.1.7"
 
 [tool.poetry.dev-dependencies]
