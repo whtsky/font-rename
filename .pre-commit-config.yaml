@@ -1,26 +1,26 @@
 repos:
-  - repo: https://github.com/asottile/reorder_python_imports
-    rev: v2.7.1
+  - repo: https://github.com/asottile/reorder-python-imports
+    rev: v3.14.0
     hooks:
       - id: reorder-python-imports
         args: [--py37-plus]
   - repo: https://github.com/psf/black
-    rev: 22.1.0
+    rev: 24.10.0
     hooks:
       - id: black
         language_version: python3
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v5.0.0
     hooks:
       - id: fix-byte-order-marker
       - id: trailing-whitespace
       - id: end-of-file-fixer
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.31.0
+    rev: v3.18.0
     hooks:
       - id: pyupgrade
         args: [--py37-plus]
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.931
+    rev: v1.12.1
     hooks:
       - id: mypy
