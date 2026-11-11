@@ -147,6 +147,8 @@ def main() -> None:
     args = parser.parse_args()
 
     for path in args.files:
+        if not Path(path).exists():
+            parser.error(f"path does not exist: {path}")
         handle_path(Path(path), remove_unparsable=args.remove_unparsable)
 
 
