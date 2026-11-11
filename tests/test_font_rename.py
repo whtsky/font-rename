@@ -1,5 +1,4 @@
 """Focused CLI tests for font-rename."""
-
 import subprocess
 import sys
 from pathlib import Path
